@@ -1,0 +1,92 @@
+[tool.poetry]
+name = "overfast-api"
+version = "2.15.1"
+description = "Overwatch API giving data about heroes, maps, and players statistics."
+license = "MIT"
+authors = ["TeKrop <tekrop@gmail.com>"]
+readme = "README.md"
+homepage = "https://overfast-api.tekrop.fr/"
+repository = "https://github.com/TeKrop/overfast-api"
+documentation = "https://overfast-api.tekrop.fr/"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+beautifulsoup4 = "^4.12.2"
+fastapi = "^0.95.1"
+httpx = {extras = ["http2"], version = "^0.24.0"}
+loguru = "^0.7.0"
+lxml = "^4.9.2"
+redis = "^4.5.2"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+fakeredis = "^2.11.2"
+ipdb = "^0.13.13"
+isort = "^5.12.0"
+pytest = "^7.3.1"
+pytest-asyncio = "^0.21.0"
+pytest-clarity = "^1.0.1"
+pytest-cov = "^4.0.0"
+pytest-randomly = "^3.12.0"
+pytest-xdist = "^3.2.1"
+refurb = "^1.16.0"
+ruff = "^0.0.264"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Same configuration as black default
+line-length = 88
+
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "C",   # flake8-comprehensions
+    "S",   # flake8-bandit
+    "BLE", # flake8-blind-except
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "T10", # flake8-debugger
+    "EM",  # flake8-errmsg
+    "ISC", # flake8-implicit-str-concat
+    "ICN", # flake8-import-conventions
+    "G",   # flake8-logging-format
+    "INP", # flake8-no-pep420
+    "PIE", # flake8-pie
+    "T20", # flake8-print
+    "PT",  # flake8-pytest-style
+    "Q",   # flake8-quotes
+    "RSE", # flake8-raise
+    "RET", # flake8-return
+    "SLF", # flake8-self
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "PTH", # flake8-use-pathlib
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "C90", # mccabe complexity checker
+    "ERA", # eradicate commented-out code
+    "PL",  # pylint
+    "TRY", # tryceratops
+    "RUF", # ruff-specific rules
+]
+ignore = [
+    "E501",    # line too long, handled by black
+    "B008",    # do not perform function calls in argument defaults
+    "S101",    # using "assert" is not a security issue
+    "S311",    # there is no cryptographic usage of random here
+    "RET505",  # allow using else after return statement
+    "PLE1205", # error checking doesn't support {} format
+    "PLR0913", # allow 6/7 arguments for some functions
+]
+
+# Check app code and tests
+src = ["app", "tests"]
+
+# Assume Python 3.11
+target-version = "py311"
